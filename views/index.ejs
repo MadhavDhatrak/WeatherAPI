@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wetherAPI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    
+    <div class="main">      
+        <div class="container">
+            <div class="hed">
+                <form action="track" method="post">
+                  <label for="city">"Check out the current weather conditions in your city":</label>
+                    <input type="text" id="city" placeholder="write your city name " class="op" name="city">
+                   <button type="submit" class="op" > track your wether</button>                 
+               </form>
+            </div>
+                <div class="compo">
+                         <% if (locals.data ) { %>
+                            <ul>
+                                <li> <i class="fa-solid fa-city"></i> : <%= data.name %> </li>
+                                <li> <i class="fa-solid fa-earth-americas"></i> : <%= data.sys.country %> </li>
+                                <li> <i class="fa-solid fa-cloud"></i> :<%= data.weather[0].main %></li>
+                                <li>  <i class="fa-solid fa-circle-info"></i> :<%= data.weather[0].description %> </li>
+                            </ul>
+                         <%} else { %>
+                            <p> <%= content %></p>
+                         <%}%> 
+                
+                </div>
+
+
+        </div>
+        
+           <% if(show){ %>
+            <form action="/next" method="post">
+               <button class="op" type="submit" id="one"> Check Another city</button>
+            </form>
+          <% }%>
+    </div>
+</body>
+</html>
